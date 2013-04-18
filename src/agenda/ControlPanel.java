@@ -21,6 +21,8 @@ public class ControlPanel extends JPanel{
     private JButton addButton, deleteButton, displayButton, helpButton, endButton;
     private ButtonHandler buttonListener;
     
+    private String filename = "agenda.txt";
+    
     public ControlPanel(ViewPanel view, TextPanel text){
         this.view = view;
         this.text = text;
@@ -77,9 +79,38 @@ public class ControlPanel extends JPanel{
                 
             }
             if(e.getActionCommand().equals("END")){
-                //write to file
+                writeOut();
                 System.exit(0);
             }
         }
-    }    
+    }
+    
+    public void readIn(){
+        try{
+            Scanner scan = new Scanner(new File(filename));
+            
+        }
+        catch(FileNotFoundException e){
+            
+        }
+    }
+    
+    public void writeOut(){
+        try{
+            File file = new File(filename);
+        
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            bw.write("");
+            bw.close();
+        }
+        catch(IOException e){
+            
+        }
+    }
 }
